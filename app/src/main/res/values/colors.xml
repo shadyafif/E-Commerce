@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#913C66</color>
+    <color name="colorPrimaryDark">#913C66</color>
+    <color name="colorAccent">#d9adad</color>
+    <color name="Grey">#767676</color>
+    <color name="colorBottomNav">#F1F0F0</color>
+    <color name="background">#dddddd</color>
+    <color name="Black">#000</color>
+
+    <color name="GreyLite">#e6e6e6</color>
+    <color name="background1">#838383</color>
+    <color name="InfoText">#d9adad</color>
+    <color name="background4">#913C66</color>
+    <color name="ViewColor">#838383</color>
+    <color name="background5">#481E33</color>
+    <color name="backgroundGif">#ffffff</color>
+    <color name="TabInput">#03DAC5</color>
+
+    <color name="blue">#2196F3</color>
+    <color name="gray">#78909C</color>
+    <color name="grayCustom">#e0e0e0</color>
+</resources>

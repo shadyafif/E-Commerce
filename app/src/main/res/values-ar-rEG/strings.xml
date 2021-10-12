@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">E-Commerce</string>
+    <string name="category">الأقسام</string>
+    <string name="ar">en</string>
+    <string name="your_gate_to_shopping">بوابتك للتسوق</string>
+    <string name="splashscreen" translatable="false">splashScreen</string>
+    <string name="title_account">الحساب</string>
+    <string name="Shopping">سلة المشتريات</string>
+    <string name="title_information">المعلومات </string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="checkChecked">تم الإضافة بنجاح فى قائمة المفضلة</string>
+    <string name="checkNotChecked">تم المسح بنجاح فى قائمة المفضلة</string>
+    <string name="quantity">الكمية</string>
+    <string name="One" translatable="false">1</string>
+    <string name="description">الوصف :</string>
+    <string name="currency" translatable="false">$</string>
+    <string name="add">إضافة</string>
+    <string name="remove">مسح</string>
+    <string name="account_update">تعديل الحساب</string>
+    <string name="WishList">قائمة المفضلة</string>
+    <string name="Language">تغيير اللغة</string>
+    <string name="Roles">الأحكام والشروط</string>
+    <string name="ShareApp">مشاركة التطبيق</string>
+    <string name="ContactUs">تواصل معنا</string>
+    <string name="log_out">تسجيل الخروج</string>
+    <string name="your_wishlist_is_empty">قائمة المفضلة فارغة</string>
+    <string name="explore_more_and_shortlist_some_items">اكتشف المزيد وقم بوضع قائمة مختصرة لبعض العناصر</string>
+    <string name="do_you_really_want_to_delete_all_wish_list">هل تريد حقاً حذف كل قائمة المفضلة ؟</string>
+    <string name="about">نبذة عنا</string>
+    <string name="terms">الأحكام :</string>
+    <string name="email">البريد الإلكترونى</string>
+    <string name="DNK" translatable="false">dnk</string>
+    <string name="password">كلمة المرور</string>
+    <string name="forget_password">نسيت كلمة المرور</string>
+    <string name="don_t_have_an_account">ليس لديك حساب</string>
+    <string name="sign_up">إنشاء حساب</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="or">أو</string>
+    <string name="Email">البريد الإلكترونى</string>
+    <string name="Phone">رقم التليفون</string>
+    <string name="name">الإسم</string>
+    <string name="Message">الرسالة</string>
+    <string name="Send">إرسال</string>
+    <string name="faqs">اسئلة شائعة</string>
+    <string name="permission_denied">تم رفض الإذن</string>
+    <string name="AddedSuccessfully">تم الإضافة…</string>
+    <string name="Deleted">تم المسح…</string>
+    <string name="shipping">قيمة الشحن</string>
+    <string name="subtotal">المجموع الفرعي</string>
+    <string name="taxes">الضريبة</string>
+    <string name="total">الإجمالى</string>
+    <string name="Checkout" >الدفع</string>
+    <string name="dollar_Sign" translatable="false">$</string>
+    <string name="EmptyCart">سلة المشتريات فارغة</string>
+    <string name="MyCart">سلى مشترياتى</string>
+    <string name="DeleteCartList">هل تريد حقًا حذف كل قائمة عربة التسوق ؟</string>
+    <string name="no">لا</string>
+    <string name="ok">نعم</string>
+    <string name="floatButton" translatable="false">FloatButton</string>
+    <string name="current_password">كلمة المرور الحالية</string>
+    <string name="new_password">كلمة المرور الجديدة</string>
+    <string name="change_password_now">تغيير كلمة المرور</string>
+    <string name="loginRequired">يجب تسجيل الدخول اولا</string>
+    <string name="change_Password">تغيير كلمة المرور</string>
+    <string name="want_to_change_language">تريد تغيير اللغة؟</string>
+    <string name="payment">الدفع</string>
+    <string name="cart_details">تفاصيل سلة المشتريات</string>
+    <string name="review">مراجعة</string>
+    <string name="phone_number">رقم التليفون</string>
+    <string name="CashOnDelivery">الدفع عند الإستلام</string>
+    <string name="CreditCard">(Strip) بطاقة ائتمان </string>
+    <string name="CashDelivery">ادفع نقدا عند الاستلام</string>
+    <string name="card_number">رقم الكارت</string>
+    <string name="yy_mm" translatable="false">MM/YY</string>
+    <string name="ctv" translatable="false">CVC</string>
+    <string name="Complete">تكملة</string>
+    <string name="CardTest">ادفع ببطاقتك الائتمانية عبر Stripe. تم تفعيل وضع الاختبار. في وضع الاختبار ، يمكنك استخدام رقم البطاقة 4242424242424242 مع أي رمز CVC وتاريخ انتهاء صالح أو التحقق من وثائق Testing Stripe للحصول على مزيد من أرقام البطاقات.</string>
+    <string name="thank_you_your_order_has_been_placed">شكرا لك! لقد تم تسجيل طلبك</string>
+    <string name="isConnected" >الاتصال متصل</string>
+    <string name="isWaiting">في انتظار الإتصال</string>
+    <string name="isLost">انقطع الاتصال</string>
+</resources>

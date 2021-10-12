@@ -1,0 +1,84 @@
+<resources>
+    <string name="app_name">E-Commerce</string>
+    <string name="your_gate_to_shopping">YOUR GATE TO SHOPPING</string>
+    <string name="splashscreen" translatable="false">splashScreen</string>
+    <string name="category">categories</string>
+    <string name="title_account">account</string>
+    <string name="Shopping">cart</string>
+    <string name="title_information">info</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="checkChecked">Item Successfully added to FavoriteList</string>
+    <string name="checkNotChecked">Item Successfully Removed From FavoriteList</string>
+    <string name="quantity">Quantity</string>
+    <string name="One" translatable="false">1</string>
+    <string name="description">Description :</string>
+    <string name="currency" translatable="false">$</string>
+    <string name="add">Add</string>
+    <string name="remove">remove</string>
+    <string name="account_update">account update</string>
+    <string name="WishList">Wish List</string>
+    <string name="Language">Language Change</string>
+    <string name="Roles">Terms and conditions</string>
+    <string name="ShareApp">Share App</string>
+    <string name="ContactUs">Contact Us</string>
+    <string name="log_out">log Out</string>
+    <string name="your_wishlist_is_empty">Your wishlist is empty</string>
+    <string name="explore_more_and_shortlist_some_items">Explore more and shortlist some items</string>
+    <string name="do_you_really_want_to_delete_all_wish_list">Do you really want to delete all wish list ?</string>
+    <string name="about">about</string>
+    <string name="terms">Terms :</string>
+    <string name="email">Email</string>
+    <string name="DNK" translatable="false">dnk</string>
+    <string name="password">password</string>
+    <string name="forget_password">forget_password</string>
+    <string name="don_t_have_an_account">don`t have an account</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login">Login now</string>
+    <string name="or">OR</string>
+    <string name="Email">Email</string>
+    <string name="Phone">Phone</string>
+    <string name="name">Name</string>
+    <string name="Message">Message</string>
+    <string name="Send">Send</string>
+    <string name="faqs">Faqs</string>
+    <string name="permission_denied">permission denied</string>
+    <string name="AddedSuccessfully">Added successfully…</string>
+    <string name="Deleted">Deleted successfully…</string>
+    <string name="shipping">shipping</string>
+    <string name="subtotal">subtotal</string>
+    <string name="taxes">taxes</string>
+    <string name="total">Total</string>
+    <string name="Checkout" translatable="false">Checkout</string>
+    <string name="dollar_Sign" translatable="false">$</string>
+    <string name="EmptyCart">Your Cart Is Empty</string>
+    <string name="MyCart">My Cart</string>
+    <string name="DeleteCartList"> do you really want to delete all Cart list ?</string>
+    <string name="no">No</string>
+    <string name="ok">Yes</string>
+    <string name="floatButton" translatable="false">FloatButton</string>
+    <string name="current_password">current password</string>
+    <string name="new_password">new password</string>
+    <string name="change_password_now">change password now</string>
+    <string name="loginRequired">you must login</string>
+    <string name="change_Password">change password</string>
+    <string name="want_to_change_language">want to change language?</string>
+    <string name="ar">ar</string>
+    <string name="checkout" translatable="false">Checkout</string>
+    <string name="payment">Payment</string>
+    <string name="cart_details">Cart details</string>
+    <string name="review">Review</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="CashOnDelivery">Cash on delivery</string>
+    <string name="CreditCard">Credit Card (Strip)</string>
+    <string name="CashDelivery">Pay with cash upon delivery</string>
+    <string name="card_number">Card Number</string>
+    <string name="yy_mm" translatable="false">MM/YY</string>
+    <string name="ctv" translatable="false">CVC</string>
+    <string name="Complete">Complete</string>
+    <string name="CardTest">Pay with your credit card via Stripe. TEST MODE ENABLED. In test mode, you can use the card number 4242424242424242 with any CVC and a valid expiration date or check the Testing Stripe documentation for more card numbers.</string>
+    <string name="thank_you_your_order_has_been_placed">Thank you,Your order has been placed</string>
+    <string name="isConnected" translatable="false">Connection is Connected</string>
+    <string name="isWaiting">Connection is waiting</string>
+    <string name="isLost">Connection is lost</string>
+
+</resources>

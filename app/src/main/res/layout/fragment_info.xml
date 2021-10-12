@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/ToolBarStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <TextView
+        android:id="@+id/txt_Info_UpdateAccount"
+        style="@style/InfoTextStyle"
+        android:text="@string/account_update"
+        app:drawableStartCompat="@drawable/ic_contact"
+        app:layout_constraintBottom_toTopOf="@+id/View_Account"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <View
+        android:id="@+id/View_Account"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="15dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/ViewColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Info_UpdateAccount" />
+
+    <TextView
+        android:id="@+id/txt_Info_WishLish"
+        style="@style/InfoTextStyle"
+        android:text="@string/WishList"
+        app:drawableStartCompat="@drawable/ic_favorite"
+        app:layout_constraintBottom_toTopOf="@+id/View_Favorite"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/View_Account" />
+
+    <View
+        android:id="@+id/View_Favorite"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="15dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/ViewColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Info_WishLish" />
+
+    <TextView
+        android:id="@+id/txt_Info_Language"
+        style="@style/InfoTextStyle"
+        android:text="@string/Language"
+        app:drawableStartCompat="@drawable/ic_language"
+        app:layout_constraintBottom_toTopOf="@+id/View_Language"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/View_Favorite" />
+
+    <View
+        android:id="@+id/View_Language"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="15dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/ViewColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Info_Language" />
+
+    <TextView
+        android:id="@+id/txt_Info_Settings"
+        style="@style/InfoTextStyle"
+        android:text="@string/Roles"
+        app:drawableStartCompat="@drawable/ic_block"
+        app:layout_constraintBottom_toTopOf="@+id/View_Roles"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/View_Language" />
+
+    <View
+        android:id="@+id/View_Roles"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="15dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/ViewColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Info_Settings" />
+
+    <TextView
+        android:id="@+id/txt_Info_Share"
+        style="@style/InfoTextStyle"
+        android:text="@string/ShareApp"
+        app:drawableStartCompat="@drawable/ic_share"
+        app:layout_constraintBottom_toTopOf="@+id/View_Share"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/View_Roles" />
+
+    <View
+        android:id="@+id/View_Share"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="15dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/ViewColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Info_Share" />
+
+    <TextView
+        android:id="@+id/txt_Info_Faqs"
+        style="@style/InfoTextStyle"
+        android:text="@string/faqs"
+        app:drawableStartCompat="@drawable/ic_question"
+        app:layout_constraintBottom_toTopOf="@+id/View_ContactUs"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/View_Share" />
+
+    <View
+        android:id="@+id/View_ContactUs"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="15dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/ViewColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Info_Faqs" />
+
+    <TextView
+        android:id="@+id/txt_log_out"
+        style="@style/InfoTextStyle"
+        android:text="@string/log_out"
+        app:drawableStartCompat="@drawable/ic_exit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/View_ContactUs" />
+</androidx.constraintlayout.widget.ConstraintLayout>

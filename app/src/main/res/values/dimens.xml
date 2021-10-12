@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activityPadding">16dp</dimen>
+    <dimen name="placeholderImage">150dp</dimen>
+    <dimen name="placeholderTextHeight">8dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+    <dimen name="icon_dim_width">40dp</dimen>
+    <dimen name="icon_dim_height">40dp</dimen>
+    <dimen name="iv_height">100dp</dimen>
+    <dimen name="iv_width">150dp</dimen>
+
+    //BottomSheet
+    <dimen name="font_size_16">16sp</dimen>
+    <dimen name="font_size_24">24sp</dimen>
+    <dimen name="dimen_0">0dp</dimen>
+    <dimen name="dimen_16">16dp</dimen>
+    <dimen name="dimen_32">32dp</dimen>
+    <dimen name="dimen_60">60dp</dimen>
+    <dimen name="list_item_spacing">16dp</dimen>
+    <dimen name="list_item_spacing_half">8dp</dimen>
+</resources>

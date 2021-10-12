@@ -1,0 +1,88 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="ContactUsTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/background5</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/background</item>
+
+    </style>
+
+    <style name="CustomBottomNav" parent="Widget.Design.BottomNavigationView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_gravity">bottom</item>
+
+        <!-- To Disable Shifting Mode-->
+        <!--app:labelVisibilityMode="labeled"-->
+        <item name="labelVisibilityMode">labeled</item>
+        <item name="itemBackground">?android:attr/selectableItemBackground</item>
+        <item name="itemTextAppearanceActive">@style/BottomNavigationView.Active</item>
+    </style>
+
+    <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="CustomFloatingButton" parent="Widget.Design.FloatingActionButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="borderWidth">0dp</item>
+        <item name="fabSize">normal</item>
+        <item name="backgroundTint">@color/colorAccent</item>
+        <item name="android:scaleType">centerInside</item>
+
+    </style>
+
+    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ToolBarStyle" parent="PopupOverlay">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:background">@drawable/toolbar_gradation</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textAlignment">textEnd</item>
+        <item name="titleTextColor">@color/colorBottomNav</item>
+    </style>
+
+    <style name="ButtonStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorBottomNav</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+    </style>
+
+    <style name="InfoTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_marginStart">200dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:fontFamily">casual</item>
+        <item name="android:gravity">end</item>
+        <item name="android:textColor">@color/InfoText</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+</resources>
+
+
+
+
+
+
