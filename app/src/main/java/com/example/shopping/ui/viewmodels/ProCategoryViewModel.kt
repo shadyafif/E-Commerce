@@ -22,8 +22,4 @@ class ProCategoryViewModel @Inject constructor(var repo: ProductCategoryRepo
         repo.getProductsListRepo(lang,categoryId)
     }
 
-    public override fun onCleared() {
-        super.onCleared()
-        repo.getCategoryProducts().value=null
-    }
 }
