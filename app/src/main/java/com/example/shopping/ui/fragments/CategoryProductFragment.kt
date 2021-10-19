@@ -23,6 +23,7 @@ import com.example.shopping.utilies.Extension
 import com.example.shopping.utilies.Extension.initRecyclerView
 import com.example.shopping.utilies.Extension.replaceFragment
 import com.example.shopping.utilies.IItemClickListener
+import com.example.shopping.utilies.baseClasses.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -31,10 +32,9 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class CategoryProductFragment : Fragment(),
+class CategoryProductFragment :
+    BaseFragment<FragmentCategoryProductBinding>(FragmentCategoryProductBinding::inflate),
     IItemClickListener {
-    private var _binding: FragmentCategoryProductBinding? = null
-    val binding get() = _binding!!
     private lateinit var category: CategoryDatum
     private var adapter: ProductCategoryAdapter? = null
     private var productDatum: ProductDatum? = null
@@ -59,14 +59,9 @@ class CategoryProductFragment : Fragment(),
         category = arguments?.getParcelable("category")!!
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentCategoryProductBinding.inflate(inflater, container, false)
+    override fun FragmentCategoryProductBinding.initialize() {
         initViews()
-        val viewModel = ViewModelProvider(this).get(ProCategoryViewModel::class.java)
+        val viewModel = ViewModelProvider(requireActivity()).get(ProCategoryViewModel::class.java)
         val pref = requireActivity().getPreferences(Context.MODE_PRIVATE)
         val lang = pref.getString("lang", "en")
 
@@ -74,12 +69,12 @@ class CategoryProductFragment : Fragment(),
             viewModel.getHomeProductsList(lang!!, category.id)
 
         }
-        viewModel.getProductList().observe(this, {
+        viewModel.getProductList().observe(this@CategoryProductFragment, {
             binding.pbProductCategory.visibility = GONE
             adapter!!.setProductList(it)
 
         })
-        return binding.root
+
     }
 
     private fun initViews() {
