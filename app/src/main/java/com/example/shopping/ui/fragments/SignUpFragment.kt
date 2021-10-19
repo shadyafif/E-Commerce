@@ -6,11 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.canhub.cropper.CropImage
 import com.example.shopping.R
@@ -20,8 +16,11 @@ import com.example.shopping.utilies.BitmapResolver
 import com.example.shopping.utilies.Extension.convertToRequestBody
 import com.example.shopping.utilies.Extension.replaceFragment
 import com.example.shopping.utilies.Extension.showSnake
+import com.example.shopping.utilies.baseClasses.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -33,27 +32,21 @@ import kotlin.math.pow
 
 
 @AndroidEntryPoint
-class SignUpFragment : Fragment(), View.OnClickListener {
-    private var _binding: FragmentSignUpBinding? = null
-    private val binding get() = _binding!!
+class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding::inflate),
+    View.OnClickListener {
     private var viewModel: RegisterViewModel? = null
     private var imageUri: File? = null
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentSignUpBinding.inflate(inflater, container, false)
+    override fun FragmentSignUpBinding.initialize() {
         initViews()
-        viewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity())[RegisterViewModel::class.java]
         viewModel!!.getDatum().observe(requireActivity(), {
-            registerSeccessful()
+            registerSuccessful()
         })
-        return binding.root
+
     }
 
-    private fun registerSeccessful() {
-        var loginFragment = AccountFragment()
+    private fun registerSuccessful() {
+        val loginFragment = AccountFragment()
         replaceFragment(
             loginFragment,
             R.id.FragmentLoad,
@@ -138,7 +131,6 @@ class SignUpFragment : Fragment(), View.OnClickListener {
 
             imageUri = file
             println("FilePath:" + file.absolutePath)
-//            imageUri.onImagePathReceived(file.absolutePath)
 
         } catch (e: IOException) {
             e.printStackTrace()

@@ -1,4 +1,4 @@
-package com.example.shopping.utilies
+package com.example.shopping.utilies.baseClasses
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

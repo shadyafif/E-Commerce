@@ -1,17 +1,14 @@
 package com.example.shopping.ui.fragments
 
 import android.content.Context
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.shopping.R
 import com.example.shopping.databinding.FragmentChangePasswordBinding
 import com.example.shopping.ui.viewmodels.ChangePasswordViewModel
 import com.example.shopping.utilies.Extension.replaceFragment
 import com.example.shopping.utilies.Extension.showSnake
+import com.example.shopping.utilies.baseClasses.BaseFragment
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -19,22 +16,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ChangePasswordFragment : Fragment(), View.OnClickListener {
-    private var _binding: FragmentChangePasswordBinding? = null
-    private val binding get() = _binding!!
+class ChangePasswordFragment :BaseFragment<FragmentChangePasswordBinding>(FragmentChangePasswordBinding::inflate) , View.OnClickListener {
     private var viewModel: ChangePasswordViewModel? = null
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentChangePasswordBinding.inflate(inflater, container, false)
-        initView()
-        viewModel = ViewModelProvider(this).get(ChangePasswordViewModel::class.java)
+    override fun FragmentChangePasswordBinding.initialize() {
+     initView()
+        viewModel = ViewModelProvider(requireActivity()).get(ChangePasswordViewModel::class.java)
         viewModel!!.getDatum().observe(requireActivity(),
             {
                 showSnake(requireView(), it.message)
             })
-        return binding.root
     }
 
     private fun initView() {
@@ -46,8 +36,8 @@ class ChangePasswordFragment : Fragment(), View.OnClickListener {
         val pref = requireActivity().getPreferences(Context.MODE_PRIVATE)
         val login = pref.getBoolean("isLogin", false)
         val token = pref.getString("token", "")
-        var currentPassword = binding.etCurrentPassword.text.toString().trim()
-        var newPassword = binding.etNewPassword.text.toString().trim()
+        val currentPassword = binding.etCurrentPassword.text.toString().trim()
+        val newPassword = binding.etNewPassword.text.toString().trim()
         showSnake(requireView(), login.toString())
         if (login) {
             CoroutineScope(Dispatchers.IO).launch {

@@ -2,35 +2,27 @@ package com.example.shopping.ui.fragments
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.shopping.R
 import com.example.shopping.databinding.FragmentAccountBinding
 import com.example.shopping.ui.viewmodels.LoginViewModel
 import com.example.shopping.utilies.Extension.replaceFragment
 import com.example.shopping.utilies.Extension.showSnake
+import com.example.shopping.utilies.baseClasses.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import java.util.*
 
 @AndroidEntryPoint
-class AccountFragment : Fragment(), View.OnClickListener {
-    private var _binding: FragmentAccountBinding? = null
-    private val binding get() = _binding!!
+class AccountFragment : BaseFragment<FragmentAccountBinding>(FragmentAccountBinding::inflate),
+    View.OnClickListener {
     private var pref: SharedPreferences? = null
     private var edt: SharedPreferences.Editor? = null
     private var viewModel: LoginViewModel? = null
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentAccountBinding.inflate(inflater, container, false)
+    override fun FragmentAccountBinding.initialize() {
         initViews()
-        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
         viewModel!!.getDatum().observe(requireActivity(), {
             if (it.status) {
                 loginSuccess(it.data.token)
@@ -38,8 +30,6 @@ class AccountFragment : Fragment(), View.OnClickListener {
                 showSnake(requireView(), it.message)
             }
         })
-
-        return binding.root
     }
 
     private fun initViews() {

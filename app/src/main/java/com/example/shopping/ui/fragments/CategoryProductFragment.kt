@@ -3,13 +3,10 @@ package com.example.shopping.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import android.view.ViewGroup
 import android.widget.CheckBox
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.shopping.R
 import com.example.shopping.data.local.RoomDao
@@ -23,6 +20,7 @@ import com.example.shopping.utilies.Extension
 import com.example.shopping.utilies.Extension.initRecyclerView
 import com.example.shopping.utilies.Extension.replaceFragment
 import com.example.shopping.utilies.IItemClickListener
+import com.example.shopping.utilies.baseClasses.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -31,10 +29,10 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class CategoryProductFragment : Fragment(), IItemClickListener {
+class CategoryProductFragment :
+    BaseFragment<FragmentCategoryProductBinding>(FragmentCategoryProductBinding::inflate),
+    IItemClickListener {
     private lateinit var category: CategoryDatum
-    private var _binding: FragmentCategoryProductBinding? = null
-    private val binding get() = _binding!!
     private var adapter: ProductCategoryAdapter? = null
     private var productDatum: ProductDatum? = null
     private var cartDatum: CartDatum? = null
@@ -58,11 +56,7 @@ class CategoryProductFragment : Fragment(), IItemClickListener {
         category = arguments?.getParcelable("category")!!
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentCategoryProductBinding.inflate(inflater, container, false)
+    override fun FragmentCategoryProductBinding.initialize() {
         initViews()
         val viewModel = ViewModelProvider(requireActivity())[ProCategoryViewModel::class.java]
         val pref = requireActivity().getPreferences(Context.MODE_PRIVATE)
@@ -72,15 +66,11 @@ class CategoryProductFragment : Fragment(), IItemClickListener {
             viewModel.getHomeProductsList(lang!!, category.id)
 
         }
-        viewModel.getProductList().observe(this, {
+        viewModel.getProductList().observe(requireActivity(), {
             binding.pbProductCategory.visibility = GONE
             adapter!!.setProductList(it)
 
         })
-
-
-
-        return binding.root
     }
 
     private fun initViews() {

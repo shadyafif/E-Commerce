@@ -26,18 +26,16 @@ object Extension {
 
     }
 
-    fun addFragment(fragment: Fragment?, id: Int,addToBackStack:Boolean, fragmentTransaction: FragmentTransaction) {
+    fun addFragment(
+        fragment: Fragment?,
+        id: Int,
+        addToBackStack: Boolean,
+        fragmentTransaction: FragmentTransaction
+    ) {
         fragmentTransaction.add(id, fragment!!)
         if (addToBackStack)
             fragmentTransaction.addToBackStack(fragment.javaClass.name)
         fragmentTransaction.commit()
-    }
-
-
-
-
-    fun View.visible(isVisible: Boolean) {
-        visibility = if (isVisible) View.VISIBLE else View.GONE
     }
 
     fun showSnake(view: View, message: String) {
@@ -64,11 +62,11 @@ object Extension {
     }
 
     fun convertToRequestBody(part: String?): RequestBody {
-        return RequestBody.create(MediaType.parse("multipart/form-data"), part)
+        return RequestBody.create(MediaType.parse("multipart/form-data"), part!!)
     }
 
     @SuppressLint("ObsoleteSdkInt")
-    fun setLang(context:Context,language: String) {
+    fun setLang(context: Context, language: String) {
         val config = context.resources.configuration
         val locale = Locale(language)
         Locale.setDefault(locale)
@@ -79,7 +77,7 @@ object Extension {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
             context.createConfigurationContext(config)
-        context.resources.updateConfiguration(config,context.resources.displayMetrics)
+        context.resources.updateConfiguration(config, context.resources.displayMetrics)
     }
 
 

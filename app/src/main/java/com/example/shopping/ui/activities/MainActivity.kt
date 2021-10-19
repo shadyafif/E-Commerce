@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     View.OnClickListener {
     private var parentView: ConstraintLayout? = null
     private var pref: SharedPreferences? = null
-    private var lang :String?=null
+    private var lang: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -37,7 +37,12 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         curvedBottomNavigationView.setOnNavigationItemSelectedListener(this)
 
         val mainFragment = MainFragment()
-        addFragment(mainFragment, R.id.FragmentLoad,false, supportFragmentManager.beginTransaction())
+        addFragment(
+            mainFragment,
+            R.id.FragmentLoad,
+            false,
+            supportFragmentManager.beginTransaction()
+        )
         val fab = findViewById<FloatingActionButton>(R.id.fab_button)
         fab.setOnClickListener(this)
         parentView = findViewById(R.id.view_parentView)
@@ -45,14 +50,13 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         NetworkConnectivity(this).observe(this, { onNetworkConnectionChanged(it) })
     }
 
-    fun initViews()
-    {
+    private fun initViews() {
         pref = this.getPreferences(Context.MODE_PRIVATE)
         lang = pref!!.getString("appLanguage", "en")
-        if (lang =="en") {
-            setLang(this,"en")
+        if (lang == "en") {
+            setLang(this, "en")
         } else {
-            setLang(this,"ar")
+            setLang(this, "ar")
         }
     }
 
@@ -113,19 +117,15 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     override fun onClick(v: View?) {
+
         val mainFragment = MainFragment()
         replaceFragment(
             mainFragment,
             R.id.FragmentLoad,
             supportFragmentManager.beginTransaction()
         )
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-//        for (fragment in supportFragmentManager.fragments) {
-//            supportFragmentManager.beginTransaction().remove(fragment).commit()
-//        }
 
     }
+
+
 }

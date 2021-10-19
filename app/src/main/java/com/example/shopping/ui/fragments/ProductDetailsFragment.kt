@@ -3,10 +3,7 @@ package com.example.shopping.ui.fragments
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.example.shopping.R
 import com.example.shopping.data.local.RoomDao
 import com.example.shopping.data.model.cartDetails.CartDatum
@@ -14,22 +11,22 @@ import com.example.shopping.data.model.productsDetails.ProductDatum
 import com.example.shopping.databinding.FragmentProductDetailsBinding
 import com.example.shopping.ui.adapter.SlidingAdapter
 import com.example.shopping.utilies.Extension.showSnake
+import com.example.shopping.utilies.baseClasses.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.*
-import java.lang.Runnable
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ProductDetailsFragment : Fragment(), View.OnClickListener {
+class ProductDetailsFragment :BaseFragment<FragmentProductDetailsBinding>(FragmentProductDetailsBinding::inflate), View.OnClickListener {
     private var productDatum: ProductDatum? = null
-    private var _binding: FragmentProductDetailsBinding? = null
-    private val binding get() = _binding!!
     private var orderNum: Int = 1
     private var currentPage = 0
     private var numPages = 0
     private var slidingImageAdapter: SlidingAdapter? = null
-    var urls: MutableList<String> = mutableListOf()
+    private var urls: MutableList<String> = mutableListOf()
     var update: Runnable? = Runnable { }
     private var cartDatum: CartDatum? = null
     @Inject
@@ -52,13 +49,8 @@ class ProductDetailsFragment : Fragment(), View.OnClickListener {
         productDatum = arguments?.getParcelable("product")
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
+    override fun FragmentProductDetailsBinding.initialize() {
         initView()
-        return binding.root
     }
 
     private fun initView() {

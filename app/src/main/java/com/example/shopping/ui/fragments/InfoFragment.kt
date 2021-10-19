@@ -4,38 +4,29 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.example.shopping.R
 import com.example.shopping.databinding.FragmentInfoBinding
 import com.example.shopping.ui.activities.MainActivity
 import com.example.shopping.utilies.ActionBottom
 import com.example.shopping.utilies.Extension.replaceFragment
 import com.example.shopping.utilies.Extension.setLang
+import com.example.shopping.utilies.baseClasses.BaseFragment
 import com.example.shopping.utilies.dialogItemClick
 
 
-class InfoFragment : Fragment(), View.OnClickListener, dialogItemClick {
-    private var _binding: FragmentInfoBinding? = null
-    private val binding get() = _binding!!
+class InfoFragment : BaseFragment<FragmentInfoBinding>(FragmentInfoBinding::inflate),
+    View.OnClickListener, dialogItemClick {
     private var pref: SharedPreferences? = null
     private var edt: SharedPreferences.Editor? = null
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentInfoBinding.inflate(inflater, container, false)
-        binding.txtInfoUpdateAccount.setOnClickListener(this)
-        binding.txtInfoWishLish.setOnClickListener(this)
-        binding.txtInfoLanguage.setOnClickListener(this)
-        binding.txtInfoSettings.setOnClickListener(this)
-        binding.txtInfoShare.setOnClickListener(this)
-        binding.txtInfoFaqs.setOnClickListener(this)
-        binding.txtLogOut.setOnClickListener(this)
-        return binding.root
+    override fun FragmentInfoBinding.initialize() {
+        binding.txtInfoUpdateAccount.setOnClickListener(this@InfoFragment)
+        binding.txtInfoWishLish.setOnClickListener(this@InfoFragment)
+        binding.txtInfoLanguage.setOnClickListener(this@InfoFragment)
+        binding.txtInfoSettings.setOnClickListener(this@InfoFragment)
+        binding.txtInfoShare.setOnClickListener(this@InfoFragment)
+        binding.txtInfoFaqs.setOnClickListener(this@InfoFragment)
+        binding.txtLogOut.setOnClickListener(this@InfoFragment)
     }
 
 

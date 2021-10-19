@@ -7,28 +7,24 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.Window
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.shopping.R
 import com.example.shopping.data.local.RoomDao
 import com.example.shopping.databinding.FragmentBillingBinding
 import com.example.shopping.ui.viewmodels.ProfileViewModel
 import com.example.shopping.utilies.Extension.replaceFragment
+import com.example.shopping.utilies.baseClasses.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class BillingFragment : Fragment(), View.OnClickListener {
-    private var _binding: FragmentBillingBinding? = null
-    private val binding get() = _binding!!
+class BillingFragment : BaseFragment<FragmentBillingBinding>(FragmentBillingBinding::inflate),
+    View.OnClickListener {
     private var totalCost: String? = null
     private var viewModel: ProfileViewModel? = null
 
@@ -51,14 +47,9 @@ class BillingFragment : Fragment(), View.OnClickListener {
         totalCost = arguments?.getString("total")
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentBillingBinding.inflate(inflater, container, false)
+    override fun FragmentBillingBinding.initialize() {
         initView()
-        viewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity())[ProfileViewModel::class.java]
         val pref = requireActivity().getPreferences(Context.MODE_PRIVATE)
         val token = pref.getString("token", "")
         CoroutineScope(Dispatchers.IO).launch {
@@ -69,8 +60,6 @@ class BillingFragment : Fragment(), View.OnClickListener {
             binding.etBillingEmail.text = it.data.email
             binding.etBillingPhone.text = it.data.phone
         })
-
-        return binding.root
     }
 
     private fun initView() {
@@ -84,7 +73,12 @@ class BillingFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.rb_billing_delivery -> {
-                binding.ivTwo.setImageDrawable(resources.getDrawable(R.drawable.payment_active,null))
+                binding.ivTwo.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.payment_active,
+                        null
+                    )
+                )
                 binding.btnBillingComplete.isEnabled = true
                 binding.rbBillingVisa.isChecked = false
                 binding.rbBillingDelivery.isChecked = true
@@ -94,7 +88,12 @@ class BillingFragment : Fragment(), View.OnClickListener {
             }
 
             R.id.rb_billing_Visa -> {
-                binding.ivTwo.setImageDrawable(resources.getDrawable(R.drawable.payment_active,null))
+                binding.ivTwo.setImageDrawable(
+                    resources.getDrawable(
+                        R.drawable.payment_active,
+                        null
+                    )
+                )
                 binding.btnBillingComplete.isEnabled = true
                 binding.rbBillingDelivery.isChecked = false
                 binding.rbBillingVisa.isChecked = true
@@ -104,13 +103,12 @@ class BillingFragment : Fragment(), View.OnClickListener {
             }
 
             R.id.btn_Billing_Complete -> {
-                binding.ivTwo.setImageDrawable(resources.getDrawable(R.drawable.done_circle,null))
+                binding.ivTwo.setImageDrawable(resources.getDrawable(R.drawable.done_circle, null))
                 val dialog = Dialog(requireContext())
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
                 dialog.setCancelable(false)
                 dialog.setContentView(R.layout.ckeckout_layout)
-                Objects.requireNonNull(dialog.window)
-                    ?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 dialog.show()
                 object : CountDownTimer(5000, 1000) {
                     override fun onTick(millisUntilFinished: Long) {}

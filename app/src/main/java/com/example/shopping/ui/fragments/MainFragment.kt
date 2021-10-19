@@ -1,15 +1,11 @@
 package com.example.shopping.ui.fragments
 
 import android.content.Context
-import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.SearchView
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.shopping.R
 import com.example.shopping.data.local.RoomDao
@@ -24,6 +20,7 @@ import com.example.shopping.utilies.Extension.initRecyclerView
 import com.example.shopping.utilies.Extension.replaceFragment
 import com.example.shopping.utilies.Extension.showSnake
 import com.example.shopping.utilies.IItemClickListener
+import com.example.shopping.utilies.baseClasses.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,9 +31,8 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class MainFragment : Fragment(), IItemClickListener {
-    private var _binding: FragmentMainBinding? = null
-    private val binding get() = _binding!!
+class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inflate),
+    IItemClickListener {
     private lateinit var viewModel: HomeViewModel
     private lateinit var adapter: ProductAdapter
     private var currentPage = 0
@@ -47,17 +43,11 @@ class MainFragment : Fragment(), IItemClickListener {
     var productDatum: ProductDatum? = null
     private var cartDatum: CartDatum? = null
 
-
     @Inject
     lateinit var roomDao: RoomDao
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentMainBinding.inflate(inflater, container, false)
-
+    override fun FragmentMainBinding.initialize() {
         initViews()
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(HomeViewModel::class.java)
         val pref = requireActivity().getPreferences(Context.MODE_PRIVATE)
         val lang = pref.getString("appLanguage", "en")
         CoroutineScope(Dispatchers.IO).launch {
@@ -73,12 +63,7 @@ class MainFragment : Fragment(), IItemClickListener {
                 initSlider(urls)
             }
         }
-        viewModel.getDatumProductList().observe(requireActivity(), {
-            binding.pbHome.visibility = View.GONE
-            binding.svNewsSearch.visibility=View.VISIBLE
-            binding.dotsIndicator.visibility = View.VISIBLE
-            adapter.setProductList(it)
-        })
+
 
         binding.svNewsSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -92,7 +77,16 @@ class MainFragment : Fragment(), IItemClickListener {
             }
 
         })
-        return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getDatumProductList().observe(requireActivity(), {
+            binding.pbHome.visibility = View.GONE
+            binding.svNewsSearch.visibility = View.VISIBLE
+            binding.dotsIndicator.visibility = View.VISIBLE
+            adapter.setProductList(it)
+        })
     }
 
     private fun initViews() {
@@ -191,6 +185,5 @@ class MainFragment : Fragment(), IItemClickListener {
             }
         }
     }
-
 
 }

@@ -4,14 +4,10 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.Window
 import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.shopping.R
 import com.example.shopping.data.local.RoomDao
@@ -20,9 +16,9 @@ import com.example.shopping.databinding.FragmentCartBinding
 import com.example.shopping.ui.adapter.CartListAdapter
 import com.example.shopping.ui.viewmodels.CartViewModel
 import com.example.shopping.utilies.CartInterface
-import com.example.shopping.utilies.Extension
 import com.example.shopping.utilies.Extension.initRecyclerView
 import com.example.shopping.utilies.Extension.replaceFragment
+import com.example.shopping.utilies.baseClasses.BaseFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,21 +29,16 @@ import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class CartFragment : Fragment(), CartInterface, View.OnClickListener {
-    private var _binding: FragmentCartBinding? = null
-    private val binding get() = _binding!!
+class CartFragment : BaseFragment<FragmentCartBinding>(FragmentCartBinding::inflate), CartInterface,
+    View.OnClickListener {
     private lateinit var adapter: CartListAdapter
     private lateinit var viewModel: CartViewModel
 
     @Inject
     lateinit var roomDao: RoomDao
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentCartBinding.inflate(inflater, container, false)
+    override fun FragmentCartBinding.initialize() {
         initViews()
-        viewModel = ViewModelProvider(this).get(CartViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(CartViewModel::class.java)
         viewModel.getCartProducts().observe(requireActivity(), {
             adapter.setCartList(it)
             if (adapter.itemCount == 0) {
@@ -60,7 +51,7 @@ class CartFragment : Fragment(), CartInterface, View.OnClickListener {
                 binding.tvEmptyCart.visibility = View.GONE
             }
         })
-        return binding.root
+
     }
 
     private fun initViews() {
@@ -149,7 +140,7 @@ class CartFragment : Fragment(), CartInterface, View.OnClickListener {
                         message, Snackbar.LENGTH_LONG
                     ).setAction(R.string.login) {
                         val accountFragment = AccountFragment()
-                        Extension.replaceFragment(
+                       replaceFragment(
                             accountFragment,
                             R.id.FragmentLoad,
                             requireActivity().supportFragmentManager.beginTransaction()

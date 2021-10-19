@@ -2,11 +2,7 @@ package com.example.shopping.ui.fragments
 
 
 import android.content.Context
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.shopping.R
 import com.example.shopping.data.model.categoriesDetails.CategoryDatum
@@ -16,6 +12,7 @@ import com.example.shopping.ui.fragments.CategoryProductFragment.Companion.categ
 import com.example.shopping.ui.viewmodels.CategoryViewModel
 import com.example.shopping.utilies.Extension.initRecyclerView
 import com.example.shopping.utilies.Extension.replaceFragment
+import com.example.shopping.utilies.baseClasses.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -23,20 +20,15 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class CategoryFragment : Fragment(), CategoryAdapter.IItemClickListener {
-    private var _binding: FragmentCategoryBinding? = null
-    private val binding get() = _binding!!
+class CategoryFragment : BaseFragment<FragmentCategoryBinding>(FragmentCategoryBinding::inflate),
+    CategoryAdapter.IItemClickListener {
     private var adapter: CategoryAdapter? = null
     private var categoryDatum: CategoryDatum? = null
 
+    override fun FragmentCategoryBinding.initialize() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentCategoryBinding.inflate(inflater, container, false)
         initViews()
-        val viewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
+        val viewModel = ViewModelProvider(requireActivity()).get(CategoryViewModel::class.java)
         val pref = requireActivity().getPreferences(Context.MODE_PRIVATE)
         val lang = pref.getString("appLanguage", "en")
 
@@ -50,7 +42,7 @@ class CategoryFragment : Fragment(), CategoryAdapter.IItemClickListener {
 
         })
 
-        return binding.root
+
     }
 
     private fun initViews() {

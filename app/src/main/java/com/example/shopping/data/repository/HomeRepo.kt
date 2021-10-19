@@ -14,7 +14,7 @@ class HomeRepo @Inject constructor(private var api: IRetrofitApi) {
 
     var bannersList: MutableStateFlow<List<BannerDatum>> = MutableStateFlow(emptyList())
     var datumList: List<BannerDatum>? = null
-    var productsList: MutableLiveData<List<ProductDatum>> = SingleLiveEvent()
+    var productsList: MutableLiveData<List<ProductDatum>> = MutableLiveData()
     var productLst: List<ProductDatum>? = null
 
 
