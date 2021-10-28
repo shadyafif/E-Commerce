@@ -10,7 +10,7 @@ import com.example.shopping.databinding.FragmentCategoryBinding
 import com.example.shopping.ui.adapter.CategoryAdapter
 import com.example.shopping.ui.fragments.CategoryProductFragment.Companion.categoryProductFragment
 import com.example.shopping.ui.viewmodels.CategoryViewModel
-import com.example.shopping.utilies.Extension.initRecyclerView
+import com.example.shopping.utilies.Extension.init
 import com.example.shopping.utilies.Extension.replaceFragment
 import com.example.shopping.utilies.baseClasses.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,7 +48,7 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>(FragmentCategoryB
     private fun initViews() {
         adapter = CategoryAdapter(requireActivity(), this)
         binding.pbCategory.visibility = View.VISIBLE
-        initRecyclerView(requireContext(), binding.RecCategories, adapter, 1)
+        binding.RecCategories.init(requireContext(), adapter, 1)
     }
 
     override fun onItemClickListener(item: CategoryDatum) {

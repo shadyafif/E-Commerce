@@ -3,13 +3,11 @@ package com.example.shopping.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
+
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import android.view.ViewGroup
 import android.widget.CheckBox
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.shopping.R
 import com.example.shopping.data.local.RoomDao
@@ -20,7 +18,7 @@ import com.example.shopping.databinding.FragmentCategoryProductBinding
 import com.example.shopping.ui.adapter.ProductCategoryAdapter
 import com.example.shopping.ui.viewmodels.ProCategoryViewModel
 import com.example.shopping.utilies.Extension
-import com.example.shopping.utilies.Extension.initRecyclerView
+import com.example.shopping.utilies.Extension.init
 import com.example.shopping.utilies.Extension.replaceFragment
 import com.example.shopping.utilies.IItemClickListener
 import com.example.shopping.utilies.baseClasses.BaseFragment
@@ -81,7 +79,7 @@ class CategoryProductFragment :
         binding.toolbar.title = category.name
         binding.pbProductCategory.visibility = VISIBLE
         adapter = ProductCategoryAdapter(roomDao, requireContext(), this)
-        initRecyclerView(requireContext(), binding.RecProductCategory, adapter, 2)
+        binding.RecProductCategory.init(requireContext(), adapter, 2)
     }
 
 

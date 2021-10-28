@@ -16,7 +16,7 @@ import com.example.shopping.ui.adapter.ProductAdapter
 import com.example.shopping.ui.adapter.SlidingAdapter
 import com.example.shopping.ui.fragments.ProductDetailsFragment.Companion.productDetailsFragment
 import com.example.shopping.ui.viewmodels.HomeViewModel
-import com.example.shopping.utilies.Extension.initRecyclerView
+import com.example.shopping.utilies.Extension.init
 import com.example.shopping.utilies.Extension.replaceFragment
 import com.example.shopping.utilies.Extension.showSnake
 import com.example.shopping.utilies.IItemClickListener
@@ -93,7 +93,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         binding.pbHome.visibility = View.VISIBLE
         binding.dotsIndicator.visibility = View.GONE
         adapter = ProductAdapter(roomDao, requireContext(), this)
-        initRecyclerView(requireContext(), binding.RecHomeProduct, adapter, 2)
+        binding.RecHomeProduct.init(requireContext(), adapter, 2)
 
     }
 

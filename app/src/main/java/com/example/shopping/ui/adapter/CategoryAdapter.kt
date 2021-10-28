@@ -16,9 +16,7 @@ import java.util.*
 class CategoryAdapter(val context: Context, private val onClick: IItemClickListener) :
     RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
     private var categoryList: List<CategoryDatum> = ArrayList()
-    fun getCategoryList(): List<CategoryDatum?> {
-        return categoryList
-    }
+
     fun setCategoryList(CategoryList: List<CategoryDatum>) {
         categoryList = CategoryList
         notifyDataSetChanged()

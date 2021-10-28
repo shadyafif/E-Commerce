@@ -50,15 +50,15 @@ object Extension {
             .into(this)
     }
 
-    fun initRecyclerView(
+    fun RecyclerView.init(
         context: Context?,
-        recyclerView: RecyclerView,
         adapter: RecyclerView.Adapter<*>?,
         column: Int
     ) {
         val layoutManager = GridLayoutManager(context, column)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = adapter
+        this.layoutManager = layoutManager
+        this.setHasFixedSize(true)
+        this.adapter = adapter
     }
 
     fun convertToRequestBody(part: String?): RequestBody {

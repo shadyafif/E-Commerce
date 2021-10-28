@@ -54,7 +54,8 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@android:color/transparent"
-            app:backgroundTint="@color/colorAccent" />
+            app:backgroundTint="@color/colorAccent"
+            android:contentDescription="btnNo" />
 
         <TextView
             android:layout_width="wrap_content"

@@ -7,7 +7,7 @@ import com.example.shopping.R
 import com.example.shopping.databinding.FragmentFaqsBinding
 import com.example.shopping.ui.adapter.FaqsAdapter
 import com.example.shopping.ui.viewmodels.FaqsViewModel
-import com.example.shopping.utilies.Extension
+import com.example.shopping.utilies.Extension.init
 import com.example.shopping.utilies.baseClasses.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -32,7 +32,7 @@ class FAQsFragment : BaseFragment<FragmentFaqsBinding>(FragmentFaqsBinding::infl
         binding.toolbar.title=requireActivity().resources.getString(R.string.faqs)
         adapter = FaqsAdapter(requireActivity())
         binding.pbFaqs.visibility = View.VISIBLE
-        Extension.initRecyclerView(requireContext(), binding.RecFaqs, adapter, 1)
+        binding.RecFaqs.init(requireContext(), adapter, 1)
     }
 
     override fun onResume() {

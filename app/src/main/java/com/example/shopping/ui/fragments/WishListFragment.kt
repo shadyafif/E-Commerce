@@ -19,7 +19,7 @@ import com.example.shopping.data.model.productsDetails.ProductDatum
 import com.example.shopping.databinding.FragmentWishListBinding
 import com.example.shopping.ui.adapter.WishListAdapter
 import com.example.shopping.ui.viewmodels.WishListViewModel
-import com.example.shopping.utilies.Extension.initRecyclerView
+import com.example.shopping.utilies.Extension.init
 import com.example.shopping.utilies.Extension.replaceFragment
 import com.example.shopping.utilies.IItemClickListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -89,7 +89,7 @@ class WishListFragment : Fragment(), IItemClickListener, View.OnClickListener {
 
     private fun initViews() {
         binding.toolbar.title = requireActivity().resources.getString(R.string.WishList)
-        initRecyclerView(requireContext(), binding.RecWishList, adapter, 1)
+        binding.RecWishList.init(requireContext(), adapter, 1)
         binding.ivWishListDelete.setOnClickListener(this)
     }
 

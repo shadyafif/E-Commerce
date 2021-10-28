@@ -16,7 +16,7 @@ import com.example.shopping.databinding.FragmentCartBinding
 import com.example.shopping.ui.adapter.CartListAdapter
 import com.example.shopping.ui.viewmodels.CartViewModel
 import com.example.shopping.utilies.CartInterface
-import com.example.shopping.utilies.Extension.initRecyclerView
+import com.example.shopping.utilies.Extension.init
 import com.example.shopping.utilies.Extension.replaceFragment
 import com.example.shopping.utilies.baseClasses.BaseFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -57,7 +57,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>(FragmentCartBinding::infl
     private fun initViews() {
         binding.toolbar.title = requireActivity().resources.getString(R.string.MyCart)
         adapter = CartListAdapter(requireContext(), this, roomDao)
-        initRecyclerView(requireContext(), binding.RecCart, adapter, 1)
+        binding.RecCart.init(requireContext(), adapter, 1)
         binding.ivCartListDelete.setOnClickListener(this)
         binding.btnViewResults.setOnClickListener(this)
 

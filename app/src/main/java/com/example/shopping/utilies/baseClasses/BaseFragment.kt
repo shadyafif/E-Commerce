@@ -22,9 +22,4 @@ open class BaseFragment  <T : ViewBinding>(private val inflateMethod : (LayoutIn
         return binding.root
     }
 
-    // Removing the binding reference when not needed is recommended as it avoids memory leak
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        _binding = null
-//    }
 }
