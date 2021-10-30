@@ -58,31 +58,6 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:text="150" />
 
-        <CheckBox
-            android:id="@+id/chk_Category_Favorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/checkbox"
-            android:button="@null"
-            app:layout_constraintEnd_toEndOf="@+id/img_Category_Product"
-            app:layout_constraintTop_toTopOf="@+id/img_Category_Product" />
-
-        <ImageView
-            android:id="@+id/img_Category_Cart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_margin="10dp"
-            android:layout_marginBottom="24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/txt_Category_product_Price"
-            app:srcCompat="@drawable/ic_cart"
-            tools:ignore="ContentDescription" />
-
         <TextView
             android:id="@+id/txt_Category_product_regular_price"
             android:layout_width="wrap_content"
@@ -104,6 +79,19 @@
             android:padding="2dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/img_Category_Product" />
+
+        <ImageView
+            android:id="@+id/iv_Category_Product_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_Category_product_name"
+            app:srcCompat="@drawable/ic_list"
+            android:contentDescription="@string/details" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

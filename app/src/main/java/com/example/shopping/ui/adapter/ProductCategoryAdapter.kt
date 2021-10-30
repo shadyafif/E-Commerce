@@ -85,14 +85,7 @@ class ProductCategoryAdapter @Inject constructor(
                     binding.txtCategoryProductRegularPrice.visibility = View.INVISIBLE
                 }
                 mItemClickListener = mOnItemClickListener
-                binding.imgCategoryProduct.setOnClickListener(this@ViewHolder)
-                binding.imgCategoryCart.setOnClickListener(this@ViewHolder)
-                binding.chkCategoryFavorite.setOnClickListener(this@ViewHolder)
-                GlobalScope.launch(Dispatchers.IO)
-                {
-                    val product = roomDao.fetchById(products.name)
-                    binding.chkCategoryFavorite.isChecked = product != null
-                }
+                binding.ivCategoryProductDetails.setOnClickListener(this@ViewHolder)
             }
 
 

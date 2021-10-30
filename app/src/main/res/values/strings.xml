@@ -80,5 +80,8 @@
     <string name="isConnected" translatable="false">Connection is Connected</string>
     <string name="isWaiting">Connection is waiting</string>
     <string name="isLost">Connection is lost</string>
+    <string name="favorite">favorite</string>
+    <string name="cart">cart</string>
+    <string name="details">details</string>
 
 </resources>

@@ -1,13 +1,17 @@
 package com.example.shopping.ui.fragments
 
 
+import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.view.Window
 import android.widget.CheckBox
+import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
 import com.example.shopping.R
 import com.example.shopping.data.local.RoomDao
@@ -86,67 +90,87 @@ class CategoryProductFragment :
     override fun onItemClickListener(view: View, itemId: Int) {
         productDatum = adapter!!.getProductList()[itemId]
         when (view.id) {
-            R.id.chk_Category_Favorite -> {
-                val checkBox = view.findViewById<CheckBox>(R.id.chk_Category_Favorite)
-                if (checkBox.isChecked) {
-                    CoroutineScope(Dispatchers.IO).launch {
-                        roomDao.insertProductFav(productDatum!!)
-                        val message: String = context?.getString(R.string.checkChecked)!!
-                        Extension.showSnake(requireView(), message)
-                    }
-                } else {
-                    CoroutineScope(Dispatchers.IO).launch {
-                        roomDao.deleteProductFav(productDatum!!)
-                        val message: String = context?.getString(R.string.checkNotChecked)!!
-                        Extension.showSnake(requireView(), message)
-                    }
-                }
+            R.id.iv_Category_Product_details -> showDialog()
 
-
-            }
-            R.id.img_Category_Product -> {
-                replaceFragment(
-                    ProductDetailsFragment.productDetailsFragment(productDatum),
-                    R.id.FragmentLoad,
-                    requireActivity().supportFragmentManager.beginTransaction()
-                )
-            }
-            R.id.img_Category_Cart -> {
-                productDatum = adapter!!.getProductList()[itemId]
-                CoroutineScope(Dispatchers.IO).launch {
-                    cartDatum = roomDao.fetchByCartName(productDatum!!.name)
-                    if (cartDatum != null) {
-                        val quantity: Int = cartDatum!!.quantity!!
-                        cartDatum!!.quantity = quantity + 1
-                        roomDao.updateQty(cartDatum)
-                        val cartMessage =
-                            requireActivity().resources.getString(R.string.AddedSuccessfully)
-                        Extension.showSnake(requireView(), cartMessage)
-                    } else {
-                        val cartData = CartDatum(
-                            productDatum!!.id,
-                            productDatum!!.description,
-                            productDatum!!.discount,
-                            productDatum!!.image,
-                            productDatum!!.images,
-                            productDatum!!.in_cart,
-                            productDatum!!.in_favorites,
-                            productDatum!!.name,
-                            productDatum!!.old_price,
-                            productDatum!!.price,
-                            1
-                        )
-                        roomDao.insertCartProduct(cartData)
-
-                        val cartMessage =
-                            requireActivity().resources.getString(R.string.AddedSuccessfully)
-                        Extension.showSnake(requireView(), cartMessage)
-                    }
-                }
-
-            }
         }
     }
 
+    private fun showDialog() {
+
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.home_product_layout)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val mDialogFavorite: CheckBox = dialog.findViewById(R.id.iv_favorite_dialog)
+        CoroutineScope(Dispatchers.IO).launch {
+            val product = roomDao.fetchById(productDatum!!.name)
+            mDialogFavorite.isChecked = product != null
+        }
+        mDialogFavorite.setOnClickListener {
+            if (mDialogFavorite.isChecked) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    roomDao.insertProductFav(productDatum!!)
+                    val message: String = context?.getString(R.string.checkChecked)!!
+                    Extension.showSnake(requireView(), message)
+                }
+            } else {
+                CoroutineScope(Dispatchers.IO).launch {
+                    roomDao.deleteProductFav(productDatum!!)
+                    val message: String = context?.getString(R.string.checkNotChecked)!!
+                    Extension.showSnake(requireView(), message)
+                }
+            }
+            dialog.dismiss()
+        }
+
+        val mDialogCart: ImageView = dialog.findViewById(R.id.iv_favorite_cart)
+        mDialogCart.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                cartDatum = roomDao.fetchByCartName(productDatum!!.name)
+                if (cartDatum != null) {
+                    val quantity: Int = cartDatum!!.quantity!!
+                    cartDatum!!.quantity = quantity + 1
+                    roomDao.updateQty(cartDatum)
+                    val cartMessage =
+                        requireActivity().resources.getString(R.string.AddedSuccessfully)
+                    Extension.showSnake(requireView(), cartMessage)
+                } else {
+                    val cartData = CartDatum(
+                        productDatum!!.id,
+                        productDatum!!.description,
+                        productDatum!!.discount,
+                        productDatum!!.image,
+                        productDatum!!.images,
+                        productDatum!!.in_cart,
+                        productDatum!!.in_favorites,
+                        productDatum!!.name,
+                        productDatum!!.old_price,
+                        productDatum!!.price,
+                        1
+                    )
+                    roomDao.insertCartProduct(cartData)
+
+                    val cartMessage =
+                        requireActivity().resources.getString(R.string.AddedSuccessfully)
+                    Extension.showSnake(requireView(), cartMessage)
+                }
+
+                dialog.dismiss()
+            }
+            dialog.dismiss()
+        }
+        val mDialogDetails: ImageView = dialog.findViewById(R.id.iv_favorite_details)
+        mDialogDetails.setOnClickListener {
+            replaceFragment(
+                ProductDetailsFragment.productDetailsFragment(productDatum),
+                R.id.FragmentLoad,
+                requireActivity().supportFragmentManager.beginTransaction()
+            )
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
 
 }

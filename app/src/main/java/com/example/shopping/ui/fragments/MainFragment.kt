@@ -1,10 +1,15 @@
 package com.example.shopping.ui.fragments
 
+import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import android.view.Window
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import com.example.shopping.R
@@ -124,33 +129,41 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
     override fun onItemClickListener(view: View, itemId: Int) {
         productDatum = adapter.getProductList()[itemId]
         when (view.id) {
-            R.id.chk_Category_Favorite -> {
-                val checkBox = view.findViewById<CheckBox>(R.id.chk_Category_Favorite)
-                if (checkBox.isChecked) {
-                    CoroutineScope(Dispatchers.IO).launch {
-                        roomDao.insertProductFav(productDatum!!)
-                        val message: String = context?.getString(R.string.checkChecked)!!
-                        showSnake(requireView(), message)
-                    }
-                } else {
-                    CoroutineScope(Dispatchers.IO).launch {
-                        roomDao.deleteProductFav(productDatum!!)
-                        val message: String = context?.getString(R.string.checkNotChecked)!!
-                        showSnake(requireView(), message)
-                    }
+            R.id.iv_Category_Product_details -> showDialog()
+        }
+    }
+
+    private fun showDialog() {
+
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.home_product_layout)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val mDialogFavorite: CheckBox = dialog.findViewById(R.id.iv_favorite_dialog)
+        CoroutineScope(Dispatchers.IO).launch {
+            val product = roomDao.fetchById(productDatum!!.name)
+            mDialogFavorite.isChecked = product != null
+        }
+        mDialogFavorite.setOnClickListener {
+            if (mDialogFavorite.isChecked) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    roomDao.insertProductFav(productDatum!!)
+                    val message: String = context?.getString(R.string.checkChecked)!!
+                    showSnake(requireView(), message)
                 }
-
-
+            } else {
+                CoroutineScope(Dispatchers.IO).launch {
+                    roomDao.deleteProductFav(productDatum!!)
+                    val message: String = context?.getString(R.string.checkNotChecked)!!
+                    showSnake(requireView(), message)
+                }
             }
-            R.id.img_Category_Product -> {
-                replaceFragment(
-                    productDetailsFragment(productDatum),
-                    R.id.FragmentLoad,
-                    requireActivity().supportFragmentManager.beginTransaction()
-                )
-            }
-            R.id.img_Category_Cart -> {
-                productDatum = adapter.getProductList()[itemId]
+            dialog.dismiss()
+        }
+
+            val mDialogCart: ImageView = dialog.findViewById(R.id.iv_favorite_cart)
+            mDialogCart.setOnClickListener {
                 CoroutineScope(Dispatchers.IO).launch {
                     cartDatum = roomDao.fetchByCartName(productDatum!!.name)
                     if (cartDatum != null) {
@@ -180,10 +193,22 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                             requireActivity().resources.getString(R.string.AddedSuccessfully)
                         showSnake(requireView(), cartMessage)
                     }
+
+                    dialog.dismiss()
                 }
-
+                dialog.dismiss()
             }
-        }
-    }
+            val mDialogDetails: ImageView = dialog.findViewById(R.id.iv_favorite_details)
+            mDialogDetails.setOnClickListener {
+                replaceFragment(
+                    productDetailsFragment(productDatum),
+                    R.id.FragmentLoad,
+                    requireActivity().supportFragmentManager.beginTransaction()
+                )
+                dialog.dismiss()
+            }
 
-}
+            dialog.show()
+        }
+
+    }

@@ -15,9 +15,6 @@ import com.example.shopping.data.model.productsDetails.ProductDatum
 import com.example.shopping.databinding.ProductCategoryLayoutBinding
 import com.example.shopping.utilies.Extension.loadImage
 import com.example.shopping.utilies.IItemClickListener
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -44,7 +41,7 @@ class ProductAdapter @Inject constructor(var roomDao: RoomDao,val context: Conte
     }
 
     override fun onBindViewHolder(holder: ProductAdapter.ViewHolder, position: Int) {
-        var currentItem = productsSearchList[position]
+        val currentItem = productsSearchList[position]
         holder.bind(currentItem)
 
     }
@@ -60,7 +57,7 @@ class ProductAdapter @Inject constructor(var roomDao: RoomDao,val context: Conte
         private val binding: ProductCategoryLayoutBinding,
         private val mOnItemClickListener: IItemClickListener
     ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
-        var mItemClickListener: IItemClickListener? = null
+        private var mItemClickListener: IItemClickListener? = null
 
         @SuppressLint("SetTextI18n", "ResourceType")
         fun bind(products: ProductDatum) {
@@ -85,14 +82,7 @@ class ProductAdapter @Inject constructor(var roomDao: RoomDao,val context: Conte
                     binding.txtCategoryProductRegularPrice.visibility = View.INVISIBLE
                 }
                 mItemClickListener = mOnItemClickListener
-                binding.imgCategoryProduct.setOnClickListener(this@ViewHolder)
-                binding.imgCategoryCart.setOnClickListener(this@ViewHolder)
-                binding.chkCategoryFavorite.setOnClickListener(this@ViewHolder)
-                GlobalScope.launch(Dispatchers.IO)
-                {
-                    val product = roomDao.fetchById(products.name)
-                    binding.chkCategoryFavorite.isChecked = product != null
-                }
+                binding.ivCategoryProductDetails.setOnClickListener(this@ViewHolder)
             }
 
         }
