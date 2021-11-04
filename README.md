@@ -11,7 +11,7 @@
 This android app created with woo commerce api, included with all functionality related to e-commerce, Signup, Home, Details, Cart, Wishlist, Checkout screens expect payment gateway, i will add it soon.
 
 ## Screenshots
-<img src="/images/SplashScreen.jpg" width="300"/> <img src="/images/HomeScreen.jpg" width="300">
+<img src="/images/SplashScreen.jpg" width="300"/> <img src="/images/MainScreen.jpg" width="300">
 <img src="/images/CategoriesScreen.jpg" width="300">
 <img src="/images/CategoryProductScreen.jpg" width="300">
 <img src="/images/DetailsScreen.jpg" width="300">
