@@ -27,6 +27,15 @@ class MainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initViews()
+        if (savedInstanceState == null) {
+            val mainFragment = MainFragment()
+            addFragment(
+                mainFragment,
+                R.id.FragmentLoad,
+                false,
+                supportFragmentManager.beginTransaction()
+            )
+        }
         val curvedBottomNavigationView: CurvedBottomNavigationView =
             findViewById(R.id.curve_bottom_navigation_view)
         curvedBottomNavigationView.inflateMenu(R.menu.bottom_nav_menu)
@@ -74,15 +83,7 @@ class MainActivity : AppCompatActivity(),
             true
 
         }
-        if (savedInstanceState == null) {
-            val mainFragment = MainFragment()
-            addFragment(
-                mainFragment,
-                R.id.FragmentLoad,
-                false,
-                supportFragmentManager.beginTransaction()
-            )
-        }
+
         val fab = findViewById<FloatingActionButton>(R.id.fab_button)
         fab.setOnClickListener(this)
         parentView = findViewById(R.id.view_parentView)
