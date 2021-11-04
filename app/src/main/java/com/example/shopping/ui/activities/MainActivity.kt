@@ -4,7 +4,6 @@ import am.networkconnectivity.NetworkConnectivity
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -15,12 +14,11 @@ import com.example.shopping.utilies.Extension.addFragment
 import com.example.shopping.utilies.Extension.replaceFragment
 import com.example.shopping.utilies.Extension.setLang
 import com.example.shopping.utilies.Extension.showSnake
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener,
+class MainActivity : AppCompatActivity(),
     View.OnClickListener {
     private var parentView: ConstraintLayout? = null
     private var pref: SharedPreferences? = null
@@ -34,15 +32,57 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         curvedBottomNavigationView.inflateMenu(R.menu.bottom_nav_menu)
         curvedBottomNavigationView.getChildAt(0)
         curvedBottomNavigationView.selectedItemId = R.id.navigation_home
-        curvedBottomNavigationView.setOnNavigationItemSelectedListener(this)
+        curvedBottomNavigationView.setOnItemSelectedListener {
+            when (it.itemId) {
+                    R.id.navigation_category -> {
+                        val categoryFragment = CategoryFragment()
+                        replaceFragment(
+                            categoryFragment,
+                            R.id.FragmentLoad,
+                            supportFragmentManager.beginTransaction()
+                        )
 
-        val mainFragment = MainFragment()
-        addFragment(
-            mainFragment,
-            R.id.FragmentLoad,
-            false,
-            supportFragmentManager.beginTransaction()
-        )
+                    }
+                    R.id.navigation_cart -> {
+                        val cartFragment = CartFragment()
+                        replaceFragment(
+                            cartFragment,
+                            R.id.FragmentLoad,
+                            supportFragmentManager.beginTransaction()
+                        )
+
+                    }
+                    R.id.navigation_account -> {
+                        val accountFragment = AccountFragment()
+                        replaceFragment(
+                            accountFragment,
+                            R.id.FragmentLoad,
+                            supportFragmentManager.beginTransaction()
+                        )
+                    }
+                    R.id.navigation_info -> {
+                        val infoFragment = InfoFragment()
+                        replaceFragment(
+                            infoFragment,
+                            R.id.FragmentLoad,
+                            supportFragmentManager.beginTransaction()
+                        )
+                    }
+
+                }
+
+            true
+
+        }
+        if (savedInstanceState == null) {
+            val mainFragment = MainFragment()
+            addFragment(
+                mainFragment,
+                R.id.FragmentLoad,
+                false,
+                supportFragmentManager.beginTransaction()
+            )
+        }
         val fab = findViewById<FloatingActionButton>(R.id.fab_button)
         fab.setOnClickListener(this)
         parentView = findViewById(R.id.view_parentView)
@@ -73,48 +113,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         }
     }
 
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.navigation_category -> {
-                val categoryFragment = CategoryFragment()
-                replaceFragment(
-                    categoryFragment,
-                    R.id.FragmentLoad,
-                    supportFragmentManager.beginTransaction()
-                )
-
-            }
-            R.id.navigation_cart -> {
-                val cartFragment = CartFragment()
-                replaceFragment(
-                    cartFragment,
-                    R.id.FragmentLoad,
-                    supportFragmentManager.beginTransaction()
-                )
-
-            }
-            R.id.navigation_account -> {
-                val accountFragment = AccountFragment()
-                replaceFragment(
-                    accountFragment,
-                    R.id.FragmentLoad,
-                    supportFragmentManager.beginTransaction()
-                )
-            }
-            R.id.navigation_info -> {
-                val infoFragment = InfoFragment()
-                replaceFragment(
-                    infoFragment,
-                    R.id.FragmentLoad,
-                    supportFragmentManager.beginTransaction()
-                )
-            }
-
-        }
-
-        return true
-    }
 
     override fun onClick(v: View?) {
 

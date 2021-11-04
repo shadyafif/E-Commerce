@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/view_parentView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,7 +16,7 @@
 
     </FrameLayout>
 
-    <com.google.android.material.navigation.NavigationView
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="60dp"
         android:layout_height="80dp"
         android:background="@android:color/transparent"
@@ -29,9 +30,10 @@
             style="@style/CustomFloatingButton"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="-8dp"
-            android:src="@drawable/ic_home" />
+            android:src="@drawable/ic_home"
+            tools:ignore="SpeakableTextPresentCheck" />
 
-    </com.google.android.material.navigation.NavigationView>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <com.example.shopping.utilies.CurvedBottomNavigationView
         android:id="@+id/curve_bottom_navigation_view"
