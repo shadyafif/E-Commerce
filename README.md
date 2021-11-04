@@ -13,6 +13,8 @@ This android app created with woo commerce api, included with all functionality 
 ## Screenshots
 <img src="/images/SplashScreen.jpg" width="300"/> <img src="/images/HomeScreen.jpg" width="300">
 <img src="/images/CategoriesScreen.jpg" width="300">
+<img src="/images/CategoryProductScreen.jpg" width="300">
+<img src="/images/DetailsScreen.jpg" width="300">
 <img src="/images/LoginScreen.jpg" width="300">
 <img src="/images/ReqisterScreen.jpg" width="300">
 <img src="/images/InfoScreen.jpg" width="300">
