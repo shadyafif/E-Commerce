@@ -76,7 +76,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>(FragmentCartBinding::infl
 
 
     override fun onCartListener(
-        view: View?,
+        v: View?,
         textQuantity: TextView?,
         textPrice: TextView?,
         Quantity: Int,
@@ -84,7 +84,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>(FragmentCartBinding::infl
     ) {
         val cartData: CartDatum = adapter.getCartList()[itemId]
         val price: Int = cartData.price!!.toInt()
-        when (requireView().id) {
+        when (v!!.id) {
             R.id.iv_Cart_Delete -> {
                 CoroutineScope(Dispatchers.IO).launch {
                     roomDao.deleteCartProduct(cartData)
