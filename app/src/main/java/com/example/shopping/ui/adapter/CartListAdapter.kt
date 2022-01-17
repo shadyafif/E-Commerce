@@ -29,7 +29,8 @@ class CartListAdapter @Inject constructor(
     var totalItemPrice: Int = 0
     var billTotal: Int = 0
     var qty = 0
-    var index = 0
+
+
     fun getCartList(): List<CartDatum> {
         return cartProductsList
     }
@@ -82,12 +83,14 @@ class CartListAdapter @Inject constructor(
                 tvCartPrice.text = totalItemPrice.toString()
                 CoroutineScope(Dispatchers.IO).launch {
                     billTotal = roomDao.getSum()
-                    callBack!!.setValue(billTotal)
                 }
                 callBack = callback
                 binding.ivCartAdd.setOnClickListener(this@ViewHolder)
                 binding.ivCartSubtract.setOnClickListener(this@ViewHolder)
                 binding.ivCartDelete.setOnClickListener(this@ViewHolder)
+
+
+
             }
 
         }

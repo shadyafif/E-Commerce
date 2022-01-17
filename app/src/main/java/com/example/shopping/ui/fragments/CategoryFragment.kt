@@ -14,9 +14,7 @@ import com.example.shopping.utilies.Extension.init
 import com.example.shopping.utilies.Extension.replaceFragment
 import com.example.shopping.utilies.baseClasses.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+
 
 
 @AndroidEntryPoint
@@ -31,11 +29,7 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>(FragmentCategoryB
         val viewModel = ViewModelProvider(requireActivity()).get(CategoryViewModel::class.java)
         val pref = requireActivity().getPreferences(Context.MODE_PRIVATE)
         val lang = pref.getString("appLanguage", "en")
-
-        CoroutineScope(Dispatchers.IO).launch {
-            viewModel.getAllCategories(lang!!)
-        }
-
+        viewModel.getAllCategories(lang!!)
         viewModel.getDatumList().observe(requireActivity(), {
             binding.pbCategory.visibility = View.GONE
             adapter?.setCategoryList(it)

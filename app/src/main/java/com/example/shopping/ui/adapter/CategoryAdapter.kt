@@ -1,5 +1,6 @@
 package com.example.shopping.ui.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ class CategoryAdapter(val context: Context, private val onClick: IItemClickListe
     RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
     private var categoryList: List<CategoryDatum> = ArrayList()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setCategoryList(CategoryList: List<CategoryDatum>) {
         categoryList = CategoryList
         notifyDataSetChanged()

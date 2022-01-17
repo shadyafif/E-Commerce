@@ -9,7 +9,7 @@ import com.example.shopping.databinding.ActivitySplashAcivityBinding
 
 
 class SplashActivity : AppCompatActivity() {
-    lateinit var binding: ActivitySplashAcivityBinding;
+    lateinit var binding: ActivitySplashAcivityBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashAcivityBinding.inflate(layoutInflater)

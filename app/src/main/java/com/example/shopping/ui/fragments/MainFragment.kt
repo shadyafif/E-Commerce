@@ -55,10 +55,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         viewModel = ViewModelProvider(requireActivity()).get(HomeViewModel::class.java)
         val pref = requireActivity().getPreferences(Context.MODE_PRIVATE)
         val lang = pref.getString("appLanguage", "en")
-        CoroutineScope(Dispatchers.IO).launch {
             viewModel.getAllProducts(lang!!)
             viewModel.getAllBanners()
-        }
         CoroutineScope(Dispatchers.Main).launch {
             viewModel.getDatumList().collect {
                 urls.clear()
@@ -101,6 +99,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         binding.RecHomeProduct.init(requireContext(), adapter, 2)
 
     }
+
+
 
     override fun onPause() {
         super.onPause()

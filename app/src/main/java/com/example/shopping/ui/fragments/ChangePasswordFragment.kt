@@ -11,9 +11,6 @@ import com.example.shopping.utilies.Extension.showSnake
 import com.example.shopping.utilies.baseClasses.BaseFragment
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ChangePasswordFragment :BaseFragment<FragmentChangePasswordBinding>(FragmentChangePasswordBinding::inflate) , View.OnClickListener {
@@ -40,10 +37,7 @@ class ChangePasswordFragment :BaseFragment<FragmentChangePasswordBinding>(Fragme
         val newPassword = binding.etNewPassword.text.toString().trim()
         showSnake(requireView(), login.toString())
         if (login) {
-            CoroutineScope(Dispatchers.IO).launch {
                 viewModel!!.getPassChanged(token!!, currentPassword, newPassword)
-            }
-
         } else {
             val message = requireActivity().resources.getString(R.string.loginRequired)
             val snackBar: Snackbar = Snackbar.make(

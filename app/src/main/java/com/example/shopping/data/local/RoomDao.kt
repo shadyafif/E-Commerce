@@ -52,5 +52,5 @@ interface RoomDao {
     fun getSum(): Int
 
     @Update
-    fun updateQty(ProductEntry: CartDatum?)
+    suspend fun updateQty(ProductEntry: CartDatum?)
 }

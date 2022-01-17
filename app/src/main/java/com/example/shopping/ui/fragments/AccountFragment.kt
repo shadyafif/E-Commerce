@@ -11,7 +11,6 @@ import com.example.shopping.utilies.Extension.replaceFragment
 import com.example.shopping.utilies.Extension.showSnake
 import com.example.shopping.utilies.baseClasses.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.*
 import java.util.*
 
 @AndroidEntryPoint
@@ -69,10 +68,7 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>(FragmentAccountBind
             Objects.requireNonNull(binding.etLoginEmail.text).toString().trim { it <= ' ' }
         val password: String =
             Objects.requireNonNull(binding.etLoginPassword.text).toString().trim { it <= ' ' }
-
-        CoroutineScope(Dispatchers.Main).launch {
-            viewModel!!.getLoginDetails(email, password)
-        }
+        viewModel!!.getLoginDetails(email, password)
     }
 
     private fun loginSuccess(token: String) {

@@ -33,12 +33,13 @@ class CartFragment : BaseFragment<FragmentCartBinding>(FragmentCartBinding::infl
     View.OnClickListener {
     private lateinit var adapter: CartListAdapter
     private lateinit var viewModel: CartViewModel
+    private var billTotal = 0
 
     @Inject
     lateinit var roomDao: RoomDao
     override fun FragmentCartBinding.initialize() {
         initViews()
-        viewModel = ViewModelProvider(requireActivity()).get(CartViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[CartViewModel::class.java]
         viewModel.getCartProducts().observe(requireActivity(), {
             adapter.setCartList(it)
             if (adapter.itemCount == 0) {
@@ -60,17 +61,22 @@ class CartFragment : BaseFragment<FragmentCartBinding>(FragmentCartBinding::infl
         binding.RecCart.init(requireContext(), adapter, 1)
         binding.ivCartListDelete.setOnClickListener(this)
         binding.btnViewResults.setOnClickListener(this)
+        CoroutineScope(Dispatchers.IO).launch {
+            billTotal = roomDao.getSum()
+            binding.tvBillTotal.text = billTotal.toString()
+            binding.tvSubTotal.text = billTotal.toString()
+        }
 
     }
 
-    override fun setValue(value: Int) {
+    private fun setValue(value: Int) {
         binding.tvBillTotal.text = value.toString()
         binding.tvSubTotal.text = value.toString()
     }
 
 
     override fun onCartListener(
-        v: View?,
+        view: View?,
         textQuantity: TextView?,
         textPrice: TextView?,
         Quantity: Int,
@@ -78,11 +84,12 @@ class CartFragment : BaseFragment<FragmentCartBinding>(FragmentCartBinding::infl
     ) {
         val cartData: CartDatum = adapter.getCartList()[itemId]
         val price: Int = cartData.price!!.toInt()
-        when (v!!.id) {
+        when (requireView().id) {
             R.id.iv_Cart_Delete -> {
                 CoroutineScope(Dispatchers.IO).launch {
                     roomDao.deleteCartProduct(cartData)
                 }
+                setValue(binding.tvBillTotal.text.toString().toInt() - Quantity * price)
             }
             R.id.iv_Cart_add -> {
                 val Quan: Int = Quantity + 1
@@ -91,6 +98,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>(FragmentCartBinding::infl
                 cartData.quantity = textQuantity.text.toString().toInt()
                 CoroutineScope(Dispatchers.IO).launch {
                     roomDao.updateQty(cartData)
+                    billTotal = roomDao.getSum()
 
                 }
                 setValue(binding.tvBillTotal.text.toString().toInt() + price)
@@ -102,18 +110,22 @@ class CartFragment : BaseFragment<FragmentCartBinding>(FragmentCartBinding::infl
                     cartData.quantity = textQuantity.text.toString().toInt()
                     CoroutineScope(Dispatchers.IO).launch {
                         roomDao.updateQty(cartData)
+
                     }
                 } else {
-                    val Quan: Int = Quantity - 1
-                    textQuantity!!.text = Quan.toString()
-                    textPrice!!.text = (price * Quan).toString()
+                    val quantity: Int = Quantity - 1
+                    textQuantity!!.text = quantity.toString()
+                    textPrice!!.text = (price * quantity).toString()
                     cartData.quantity = textQuantity.text.toString().toInt()
                     CoroutineScope(Dispatchers.IO).launch {
                         roomDao.updateQty(cartData)
+                        billTotal = roomDao.getSum()
+
                     }
+                    setValue(binding.tvBillTotal.text.toString().toInt() - price)
                 }
 
-                setValue(binding.tvBillTotal.text.toString().toInt() - price)
+
             }
         }
     }
@@ -140,7 +152,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>(FragmentCartBinding::infl
                         message, Snackbar.LENGTH_LONG
                     ).setAction(R.string.login) {
                         val accountFragment = AccountFragment()
-                       replaceFragment(
+                        replaceFragment(
                             accountFragment,
                             R.id.FragmentLoad,
                             requireActivity().supportFragmentManager.beginTransaction()
@@ -158,8 +170,8 @@ class CartFragment : BaseFragment<FragmentCartBinding>(FragmentCartBinding::infl
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.deletecart)
-        Objects.requireNonNull(dialog.window)!!
-            .setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        Objects.requireNonNull(dialog.window)
+            ?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         val mDialogNo: FloatingActionButton = dialog.findViewById(R.id.frmNo)
         mDialogNo.setOnClickListener {

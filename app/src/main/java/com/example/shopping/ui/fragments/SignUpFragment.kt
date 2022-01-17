@@ -18,9 +18,6 @@ import com.example.shopping.utilies.Extension.replaceFragment
 import com.example.shopping.utilies.Extension.showSnake
 import com.example.shopping.utilies.baseClasses.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -193,7 +190,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
 
     private fun userRegister() {
 
-        val requestBody = RequestBody.create(MediaType.parse("image/*"), imageUri!!)
+        val requestBody = RequestBody.create(MediaType.parse("image/*"),imageUri)
         val fileToUpload: MultipartBody.Part =
             MultipartBody.Part.createFormData("image", imageUri!!.name, requestBody)
 
@@ -209,9 +206,9 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
         val password: RequestBody = convertToRequestBody(
             Objects.requireNonNull(binding.etPassword.text).toString().trim()
         )
-        CoroutineScope(Dispatchers.IO).launch {
-            viewModel!!.getRegisterDetails(name, phone, email, password, fileToUpload)
-        }
+
+        viewModel!!.getRegisterDetails(name, phone, email, password, fileToUpload)
+
     }
 }
 

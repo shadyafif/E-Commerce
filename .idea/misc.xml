@@ -11,8 +11,10 @@
         <entry key="..\:/MyWork/AndriodNanoDegreeProjects/GitHubProjects/NewProjects/E-Commerce/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.3828125" />
         <entry key="..\:/MyWork/AndriodNanoDegreeProjects/GitHubProjects/NewProjects/E-Commerce/app/src/main/res/drawable/ic_cart.xml" value="0.3828125" />
         <entry key="..\:/MyWork/AndriodNanoDegreeProjects/GitHubProjects/NewProjects/E-Commerce/app/src/main/res/drawable/ic_favorite.xml" value="0.3828125" />
+        <entry key="..\:/MyWork/AndriodNanoDegreeProjects/GitHubProjects/NewProjects/E-Commerce/app/src/main/res/drawable/ic_mail.xml" value="0.24166666666666667" />
         <entry key="..\:/MyWork/AndriodNanoDegreeProjects/GitHubProjects/NewProjects/E-Commerce/app/src/main/res/drawable/ic_question.xml" value="0.3828125" />
         <entry key="..\:/MyWork/AndriodNanoDegreeProjects/GitHubProjects/NewProjects/E-Commerce/app/src/main/res/drawable/layout_search.xml" value="0.3828125" />
+        <entry key="..\:/MyWork/AndriodNanoDegreeProjects/GitHubProjects/NewProjects/E-Commerce/app/src/main/res/drawable/progress.xml" value="0.2703125" />
         <entry key="..\:/MyWork/AndriodNanoDegreeProjects/GitHubProjects/NewProjects/E-Commerce/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/MyWork/AndriodNanoDegreeProjects/GitHubProjects/NewProjects/E-Commerce/app/src/main/res/layout/category_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/MyWork/AndriodNanoDegreeProjects/GitHubProjects/NewProjects/E-Commerce/app/src/main/res/layout/ckeckout_layout.xml" value="0.36666666666666664" />
@@ -35,7 +37,7 @@
         <entry key="..\:/MyWork/AndriodNanoDegreeProjects/GitHubProjects/NewProjects/E-Commerce/app/src/main/res/layout/fragment_product_category.xml" value="0.3654891304347826" />
         <entry key="..\:/MyWork/AndriodNanoDegreeProjects/GitHubProjects/NewProjects/E-Commerce/app/src/main/res/layout/fragment_product_details.xml" value="0.36666666666666664" />
         <entry key="..\:/MyWork/AndriodNanoDegreeProjects/GitHubProjects/NewProjects/E-Commerce/app/src/main/res/layout/fragment_settings.xml" value="0.33" />
-        <entry key="..\:/MyWork/AndriodNanoDegreeProjects/GitHubProjects/NewProjects/E-Commerce/app/src/main/res/layout/fragment_sign_up.xml" value="0.36666666666666664" />
+        <entry key="..\:/MyWork/AndriodNanoDegreeProjects/GitHubProjects/NewProjects/E-Commerce/app/src/main/res/layout/fragment_sign_up.xml" value="0.22" />
         <entry key="..\:/MyWork/AndriodNanoDegreeProjects/GitHubProjects/NewProjects/E-Commerce/app/src/main/res/layout/fragment_wish_list.xml" value="0.22554347826086957" />
         <entry key="..\:/MyWork/AndriodNanoDegreeProjects/GitHubProjects/NewProjects/E-Commerce/app/src/main/res/layout/home_product_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/MyWork/AndriodNanoDegreeProjects/GitHubProjects/NewProjects/E-Commerce/app/src/main/res/layout/layout_cart.xml" value="0.36666666666666664" />

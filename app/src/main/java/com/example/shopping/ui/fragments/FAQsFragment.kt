@@ -10,10 +10,6 @@ import com.example.shopping.ui.viewmodels.FaqsViewModel
 import com.example.shopping.utilies.Extension.init
 import com.example.shopping.utilies.baseClasses.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-
 @AndroidEntryPoint
 class FAQsFragment : BaseFragment<FragmentFaqsBinding>(FragmentFaqsBinding::inflate){
 
@@ -39,8 +35,6 @@ class FAQsFragment : BaseFragment<FragmentFaqsBinding>(FragmentFaqsBinding::infl
         super.onResume()
         val pref = requireActivity().getPreferences(Context.MODE_PRIVATE)
         val lang = pref.getString("appLanguage", "en")
-        CoroutineScope(Dispatchers.IO).launch  {
             viewModel.getAllFaqs(lang!!)
-        }
     }
 }

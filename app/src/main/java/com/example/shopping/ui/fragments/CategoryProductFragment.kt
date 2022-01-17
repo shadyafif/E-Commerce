@@ -66,11 +66,7 @@ class CategoryProductFragment :
         val viewModel = ViewModelProvider(requireActivity()).get(ProCategoryViewModel::class.java)
         val pref = requireActivity().getPreferences(Context.MODE_PRIVATE)
         val lang = pref.getString("lang", "en")
-
-        CoroutineScope(Dispatchers.IO).launch {
-            viewModel.getHomeProductsList(lang!!, category.id)
-
-        }
+        viewModel.getHomeProductsList(lang!!, category.id)
         viewModel.getProductList().observe(this@CategoryProductFragment, {
             binding.pbProductCategory.visibility = GONE
             adapter!!.setProductList(it)

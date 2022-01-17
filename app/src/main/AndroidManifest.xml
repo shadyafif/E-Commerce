@@ -17,7 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.example.shopping.ui.activities.SplashActivity">
+            android:name="com.example.shopping.ui.activities.SplashActivity"
+            android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -26,7 +28,8 @@
         <activity
             android:name="com.example.shopping.ui.activities.MainActivity" />
         <activity android:name="com.canhub.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat"/>
+            android:exported="true"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

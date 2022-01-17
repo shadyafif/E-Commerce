@@ -1,6 +1,6 @@
 package com.example.shopping.utilies
 
-import android.content.ContentValues.TAG
+
 import android.util.Log
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner
