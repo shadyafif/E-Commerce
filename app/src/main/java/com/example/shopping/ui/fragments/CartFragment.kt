@@ -92,9 +92,9 @@ class CartFragment : BaseFragment<FragmentCartBinding>(FragmentCartBinding::infl
                 setValue(binding.tvBillTotal.text.toString().toInt() - Quantity * price)
             }
             R.id.iv_Cart_add -> {
-                val Quan: Int = Quantity + 1
-                textQuantity!!.text = Quan.toString()
-                textPrice!!.text = (price * Quan).toString()
+                val quantity: Int = Quantity + 1
+                textQuantity!!.text = quantity.toString()
+                textPrice!!.text = (price * quantity).toString()
                 cartData.quantity = textQuantity.text.toString().toInt()
                 CoroutineScope(Dispatchers.IO).launch {
                     roomDao.updateQty(cartData)
@@ -102,6 +102,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>(FragmentCartBinding::infl
 
                 }
                 setValue(binding.tvBillTotal.text.toString().toInt() + price)
+
             }
             R.id.iv_Cart_subtract -> {
                 if (Quantity == 1) {
