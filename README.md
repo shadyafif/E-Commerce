@@ -8,7 +8,7 @@
 - [License](#Licence)
 
 ## General info
-This android app created with woo commerce api, included with all functionality related to e-commerce, Signup, Home, Details, Cart, Wishlist, Checkout screens expect payment gateway, i will add it soon.
+This android app created with free E-Commerce api, included with all functionality related to e-commerce, Signup, Home, Details, Cart, Wishlist, Checkout screens expect payment gateway, i will add it soon.
 
 ## Screenshots
 <img src="/images/SplashScreen.jpg" width="300"/> <img src="/images/MainScreen.jpg" width="300">
