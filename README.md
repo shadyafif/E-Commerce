@@ -59,7 +59,7 @@ To run this project, install it by download or clone.
 - Compile sdk v30
 
 ## Youtube link 
-
+https://youtu.be/EoCmOOeYNqU
 ## Licence
 ### MIT Licence 
 ### Copyright (c) 2021 SHADY AFIF 
